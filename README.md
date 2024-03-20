@@ -74,6 +74,14 @@ Para ejecutar Micro Torneo de Fútbol en tu entorno local, sigue estos pasos:
 
 7.  Abrir el navegador en la dirección `http://127.0.0.1:5000/` para comenzar a usar la aplicación.
 
+## Imagen Docker
+
+Para usar la imagen Docker se esta aplicación utilice los siguientes comandos
+```
+docker pull dalzoj/app-torneo-futbol:1.0
+docker run -p 5000:5000 docker pull dalzoj/app-torneo-futbol:1.0
+```
+
 ## Contribuciones
 
 Las contribuciones son bienvenidas. Puedes enviar un pull request o abrir un issue para discutir nuevas modificaciones o añadir futuras funcionalidades.
@@ -81,6 +89,3 @@ Las contribuciones son bienvenidas. Puedes enviar un pull request o abrir un iss
 ## Licencia
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo LICENSE para más detalles.
-
-
-
