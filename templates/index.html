@@ -7,8 +7,9 @@
 
 <body>
     <div class="container">
-        <h1>Torneo de Fútbol</h1>
-        <h2>Equipos</h2>
+        <h1>Micro Torneo de Futbol</h1>
+        <h2>Equipos en Lista</h2>
+
         <ul>
             {% for team in teams %}
             <li>{{ team }}</li>
@@ -18,16 +19,16 @@
         <h2>Partidos</h2>
         
         <form id="matchForm">
-            {% for partido in partidos %}
+            {% for match in matches %}
             <div>
-                <label>{{ partido[0] }} vs {{ partido[1] }}</label>
+                <label>{{ match[0] }} vs {{ match[1] }}</label>
                 <select name="winner">
-                    <option value="{{ partido[0] }}">{{ partido[0] }}</option>
-                    <option value="{{ partido[1] }}">{{ partido[1] }}</option>
+                    <option value="{{ match[0] }}">{{ match[0] }}</option>
+                    <option value="{{ match[1] }}">{{ match[1] }}</option>
                 </select>
             </div>
             {% endfor %}
-            <button type="submit" class="btn btn-primary">Enviar Selecciones</button>
+            <button type="submit" class="btn btn-primary">Enviar Resultados</button>
         </form>
 
         <h2 id="winnerTitle">Equipo Ganador</h2>
@@ -58,6 +59,7 @@
                 });
             });
         });
+
     </script>
 </body>
 </html>
