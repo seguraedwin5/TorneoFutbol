@@ -13,7 +13,6 @@ Esta aplicación web desarrollada con Flask permite organizar un micro torneo de
 
 -   **Backend:** Flask (Python)
 -   **Frontend:** HTML, CSS (Bootstrap para estilos), JavaScript (jQuery para AJAX)
--   **Patrón de diseño:** MVC (Modelo-Vista-Controlador)
 
 ## Estructura del Proyecto
 
