@@ -4,13 +4,6 @@ from match import match
 
 app = Flask(__name__)
 
-'''
-
-# Diccionario de Victorias por Equipos
-victories = {team: 0 for team in teams}
-
-'''
-
 # Index
 @app.route('/')
 def index():
@@ -33,6 +26,7 @@ def get_winner():
         match_object.set_victory(result,1)
     
     winner = max(match_object.get_victories(), key=match_object.get_victories().get)
+    match_object.reload_victories()
     
     return jsonify({'winner': winner})
 

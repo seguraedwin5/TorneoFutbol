@@ -3,63 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Torneo de Fútbol</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/resources/css/styles.css">
+    <script src="/static/js/main.js"></script>
+
 </head>
-
 <body>
-    <div class="container">
-        <h1>Micro Torneo de Futbol</h1>
-        <h2>Equipos en Lista</h2>
-
-        <ul>
-            {% for team in teams %}
-            <li>{{ team }}</li>
-            {% endfor %}
-        </ul>
-
-        <h2>Partidos</h2>
+    <div class="container mt-5">
         
-        <form id="matchForm">
-            {% for match in matches %}
-            <div>
-                <label>{{ match[0] }} vs {{ match[1] }}</label>
-                <select name="winner">
-                    <option value="{{ match[0] }}">{{ match[0] }}</option>
-                    <option value="{{ match[1] }}">{{ match[1] }}</option>
-                </select>
+        <h1 class="mb-4">Micro Torneo de Futbol</h1>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Equipos en Lista</h2>
+                <ul class="list-group">
+                    {% for team in teams %}
+                    <li class="list-group-item">{{ team }}</li>
+                    {% endfor %}
+                </ul>
             </div>
-            {% endfor %}
-            <button type="submit" class="btn btn-primary">Enviar Resultados</button>
-        </form>
-
-        <h2 id="winnerTitle">Equipo Ganador</h2>
-        
-        <div id="winnerTeam"></div>
-
+            <div class="col-md-6">
+                <h2>Encuentros Totales</h2>
+                <form id="matchForm">
+                    {% for match in matches %}
+                    <div class="form-group">
+                        <label for="match{{loop.index}}">{{ match[0] }} vs {{ match[1] }}</label>
+                        <select class="form-control" id="match{{loop.index}}" name="winner">
+                            <option>--- Seleccione el ganador ---</option>
+                            <option value="{{ match[0] }}">{{ match[0] }}</option>
+                            <option value="{{ match[1] }}">{{ match[1] }}</option>
+                        </select>
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary">Enviar Resultados</button>
+                </form>
+            </div>
+        </div>
     </div>
 
+    <div class="mx-auto" style="width: 200px;">
+        <h2 id="winnerTitle" class="text-center" style="display:none;">Equipo Ganador</h2>
+        <div id="winnerTeam" class="text-center"></div>
+    </div>
+ 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    
-    <script>
-        $(document).ready(function() {
-            $('#matchForm').submit(function(e) {
-                e.preventDefault();
-                var resultados = [];
-                $('select[name="winner"]').each(function() {
-                    resultados.push($(this).val());
-                });
-                $.ajax({
-                    url: '/get_winner',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({resultados: resultados}),
-                    success: function(response) {
-                        $('#winnerTitle').show();
-                        $('#winnerTeam').text("El Equipo Ganador del Torneo es: " + response.winner);
-                    }
-                });
-            });
-        });
-
-    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/js/main.js"></script>
 </body>
 </html>

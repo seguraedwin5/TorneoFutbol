@@ -16,3 +16,6 @@ class match():
     
     def set_victory(self, team, unit=1):
         self.victories[team] += unit
+        
+    def reload_victories(self):
+        self.victories = {team: 0 for team in self.teams}
