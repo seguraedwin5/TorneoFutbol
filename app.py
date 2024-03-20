@@ -1,29 +1,25 @@
 from flask import Flask, jsonify, request, render_template_string
-from itertools import combinations
+from match import match
+
 
 app = Flask(__name__)
 
-# Lista de equipos
-teams = ["Millonarios FC",
-         "Nacional FC",
-         "America FC",
-         "Junior FC"]
+'''
 
 # Diccionario de Victorias por Equipos
 victories = {team: 0 for team in teams}
 
-def get_match_teams_combinations(teams):
-    return list(combinations(teams, 2))
+'''
 
 # Index
 @app.route('/')
 def index():
     
-    rounds = get_match_teams_combinations(teams)
+    rounds = match_object.get_match_teams_combinations()
     
     return render_template_string(
         open('templates/index.html').read(),
-        teams=teams,
+        teams=match_object.get_teams(),
         matches=rounds
     )
 
@@ -34,11 +30,12 @@ def get_winner():
     results = request.json['resultados']
     
     for result in results:
-        victories[result] += 1
+        match_object.set_victory(result,1)
     
-    winner = max(victories, key=victories.get)
+    winner = max(match_object.get_victories(), key=match_object.get_victories().get)
     
     return jsonify({'winner': winner})
 
 if __name__ == '__main__':
+    match_object = match(["Millonarios FC", "Nacional FC", "America FC", "Junior FC"])
     app.run(debug=True)
