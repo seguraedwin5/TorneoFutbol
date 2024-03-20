@@ -79,7 +79,7 @@ Para ejecutar Micro Torneo de Fútbol en tu entorno local, sigue estos pasos:
 Para usar la imagen Docker se esta aplicación utilice los siguientes comandos
 ```
 docker pull dalzoj/app-torneo-futbol:1.0
-docker run -p 5000:5000 docker pull dalzoj/app-torneo-futbol:1.0
+docker run -p 5000:5000 dalzoj/app-torneo-futbol:1.0
 ```
 
 ## Contribuciones
