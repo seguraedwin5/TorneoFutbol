@@ -30,6 +30,11 @@ def get_winner():
     
     return jsonify({'winner': winner})
 
+@app.post('/add_equipo/<string:equipo>')
+def agregar_equipo(equipo):
+    match_object.add_team(equipo=equipo)
+    return jsonify({'mensaje' : f'equipo {equipo} agregado correctamente'})
+
 if __name__ == '__main__':
     match_object = match(["Millonarios FC", "Nacional FC", "America FC", "Junior FC"])
     app.run(debug=True)

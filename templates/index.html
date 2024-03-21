@@ -5,6 +5,7 @@
     <title>Torneo de Fútbol</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/resources/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css">
     <script src="/static/js/main.js"></script>
 
 </head>
@@ -21,33 +22,54 @@
                     <li class="list-group-item">{{ team }}</li>
                     {% endfor %}
                 </ul>
+                <div class = "row mt-5">
+                    <button class="btn btn-info" onclick="mostrardialogo()">Agregar Equipo</button>
+                </div>
             </div>
             <div class="col-md-6">
                 <h2>Encuentros Totales</h2>
                 <form id="matchForm">
-                    {% for match in matches %}
-                    <div class="form-group">
-                        <label for="match{{loop.index}}">{{ match[0] }} vs {{ match[1] }}</label>
-                        <select class="form-control" id="match{{loop.index}}" name="winner">
-                            <option>--- Seleccione el ganador ---</option>
-                            <option value="{{ match[0] }}">{{ match[0] }}</option>
-                            <option value="{{ match[1] }}">{{ match[1] }}</option>
-                        </select>
+                    <div class="row">
+                        {% for match in matches %}
+                        <div class="card text-white bg-secondary mb-3 col-6">
+                            <div class="card-header">Partido {{loop.index}}</div>
+                            <div class="card-body">
+                              <h5 class="card-title">{{ match[0] }} vs {{ match[1] }}</h5>
+                                <div class="card-text">
+                                  <select class="form-control" id="match{{loop.index}}" name="winner">
+                                      
+                                      <option>--- Seleccione el ganador ---</option>
+                                      <option value="{{ match[0] }}">{{ match[0] }}</option>
+                                      <option value="{{ match[1] }}">{{ match[1] }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                          </div>
+                          <!--
+
+                              <div class="form-group">
+                                  <label for="match{{loop.index}}">{{ match[0] }} vs {{ match[1] }}</label>
+                                  <select class="form-control" id="match{{loop.index}}" name="winner">
+                                      <option>--- Seleccione el ganador ---</option>
+                                      <option value="{{ match[0] }}">{{ match[0] }}</option>
+                                      <option value="{{ match[1] }}">{{ match[1] }}</option>
+                                    </select>
+                                </div>
+                            -->
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                     <button type="submit" class="btn btn-primary">Enviar Resultados</button>
                 </form>
             </div>
+            
         </div>
     </div>
 
-    <div class="mx-auto" style="width: 200px;">
-        <h2 id="winnerTitle" class="text-center" style="display:none;">Equipo Ganador</h2>
-        <div id="winnerTeam" class="text-center"></div>
-    </div>
- 
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <script src="/static/js/main.js"></script>
 </body>
 </html>

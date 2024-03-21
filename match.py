@@ -1,7 +1,7 @@
 from itertools import combinations
 
 class match():
-    def __init__(self, team_list):
+    def __init__(self, team_list: list):
         self.teams = team_list
         self.victories = {team: 0 for team in self.teams}
         
@@ -19,3 +19,6 @@ class match():
         
     def reload_victories(self):
         self.victories = {team: 0 for team in self.teams}
+        
+    def add_team(self, equipo):
+        self.teams.append(equipo)
